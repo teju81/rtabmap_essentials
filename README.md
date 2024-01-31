@@ -58,6 +58,13 @@ Also, the rtabmap_viz visualizer will show the 3D map getting built against a da
 ```
 [ WARN] [1706713063.312298277]: Could not get transform from odom to camera_link after 0.200000 seconds (for stamp=1706713062.592324)! Error="Lookup would require extrapolation 0.499859572s into the future.  Requested time 1706713062.592323542 but the latest data is at time 1706713062.092463970, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.201453 timeout was 0.2.".
 [ WARN] (2024-01-31 14:57:43.392) OdometryF2M.cpp:562::computeTransform() Registration failed: "Not enough inliers 0/20 (matches=54) between -1 and 624"
+[ INFO] [1706713063.394758067]: Odom: quality=0, std dev=0.000000m|0.000000rad, update time=0.097652s
+[ WARN] (2024-01-31 14:57:43.503) OdometryF2M.cpp:562::computeTransform() Registration failed: "Not enough inliers 0/20 (matches=52) between -1 and 625"
+[ INFO] [1706713063.505905196]: Odom: quality=0, std dev=0.000000m|0.000000rad, update time=0.108904s
+[ERROR] (2024-01-31 14:57:43.513) Rtabmap.cpp:1348::process() RGB-D SLAM mode is enabled, memory is incremental but no odometry is provided. Image 3436 is ignored!
+[ INFO] [1706713063.513574266]: rtabmap (129): Rate=1.00s, Limit=0.000s, Conversion=0.0032s, RTAB-Map=0.0001s, Maps update=0.0000s pub=0.0000s (local map=30, WM=42)
+[ WARN] [1706713063.544015055]: Could not get transform from odom to camera_link after 0.200000 seconds (for stamp=1706713062.692291)! Error="Lookup would require extrapolation 0.599826575s into the future.  Requested time 1706713062.692290545 but the latest data is at time 1706713062.092463970, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.201584 timeout was 0.2.".
+[ WARN] (2024-01-31 14:57:43.608) OdometryF2M.cpp:562::computeTransform() Registration failed: "Not enough inliers 0/20 (matches=50) between -1 and 626"
 ```
 
 
