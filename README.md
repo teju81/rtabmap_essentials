@@ -37,7 +37,28 @@ This repo will document the essentials to run rtabmap with a realsense camera (D
   ```
 - Launch RTABMAP by running ``roslaunch rtabmap_ros rtabmap.launch``
 
+**Note**
 
+Hold the camera as still as you can in the air before launching the rtabmap node. Once, launched move the camera around slowly to build the map. Successful map building would show up similar to the below text
+```
+[ INFO] [1706713057.374798269]: Odom: quality=161, std dev=0.003923m|0.019480rad, update time=0.123411s
+[ INFO] [1706713057.462672670]: Odom: quality=105, std dev=0.004594m|0.017144rad, update time=0.085584s
+[ INFO] [1706713057.575339302]: Odom: quality=191, std dev=0.001772m|0.014651rad, update time=0.110076s
+[ INFO] [1706713057.663582753]: Odom: quality=230, std dev=0.001890m|0.022044rad, update time=0.085466s
+[ INFO] [1706713057.757163689]: Odom: quality=275, std dev=0.001224m|0.013634rad, update time=0.087272s
+[ INFO] [1706713057.841264953]: Odom: quality=231, std dev=0.004162m|0.017944rad, update time=0.078874s
+[ INFO] [1706713057.953144521]: Odom: quality=173, std dev=0.002362m|0.016542rad, update time=0.108902s
+[ INFO] [1706713058.036762876]: Odom: quality=241, std dev=0.002255m|0.013634rad, update time=0.079593s
+[ INFO] [1706713058.119652165]: Odom: quality=279, std dev=0.002755m|0.018188rad, update time=0.077965s
+[ INFO] [1706713058.235901496]: Odom: quality=278, std dev=0.001870m|0.013634rad, update time=0.111718s
+[ INFO] [1706713058.328899046]: Odom: quality=291, std dev=0.002175m|0.013634rad, update time=0.087778s
+```
+
+Also, the rtabmap_viz visualizer will show the 3D map getting built against a dark/black background. When odometry is lost (due to fast camera movement etc.) the background turns red in 3D map portion of the visualizer. The text will look similar to what is give below
+```
+[ WARN] [1706713063.312298277]: Could not get transform from odom to camera_link after 0.200000 seconds (for stamp=1706713062.592324)! Error="Lookup would require extrapolation 0.499859572s into the future.  Requested time 1706713062.592323542 but the latest data is at time 1706713062.092463970, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.201453 timeout was 0.2.".
+[ WARN] (2024-01-31 14:57:43.392) OdometryF2M.cpp:562::computeTransform() Registration failed: "Not enough inliers 0/20 (matches=54) between -1 and 624"
+```
 
 
   
