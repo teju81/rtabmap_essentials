@@ -26,6 +26,15 @@ This repo will document the essentials to run rtabmap with a realsense camera (D
 **Step 4: Launch RTABMAP**
 
 - In another terminal, run the rtabmap docker image ``sudo docker run -it --rm --network=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix introlab3it/rtabmap_ros:noetic-latest bash``
+- Edit the topics on which the data stream and info of the RGBD sensor is published
+  - Run the command ``gedit /opt/ros/noetic/share/rtabmap_ros/launch/rtabmap.launch`` and inspect the file and make sure the topics matches what is given below
+  ```
+    <!-- RGB-D related topics -->
+  <arg name="rgb_topic"               default="/camera/color/image_raw" />
+  <arg name="depth_topic"             default="/camera/aligned_depth_to_color/image_raw" />
+  <arg name="camera_info_topic"       default="/camera/color/camera_info" />
+  <arg name="depth_camera_info_topic" default="$(arg camera_info_topic)" />
+  ```
 - Launch RTABMAP by running ``roslaunch rtabmap_ros rtabmap.launch``
 
 
