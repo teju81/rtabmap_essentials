@@ -13,7 +13,7 @@ This repo will document the essentials to run rtabmap with a realsense camera (D
 - Run the docker image ``sudo docker run --rm -it -v "/dev:/dev" -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --privileged --network=host realsense_noetic bash``
 - Launch the realsense camera node in the container by running ``roslaunch realsense2_camera rs_camera.launch align_depth:=true``
 
-**Step 3: Check RealSense is Working**
+**Step 3: Check RealSense is Working (optional)**
 
 - Open another terminal in the container associated with the realsense camera ny running ``sudo docker exec -it <container_name> bash``
 - Run rviz ``rviz rviz``
