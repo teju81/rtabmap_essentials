@@ -68,4 +68,8 @@ Also, the rtabmap_viz visualizer will show the 3D map getting built against a da
 ```
 
 
-  
+References:
+1) https://github.com/IntelRealSense/realsense-ros/tree/ros1-legacy
+2) https://github.com/introlab/rtabmap_ros/tree/master
+3) https://github.com/introlab/rtabmap/wiki/Kinect-mapping#lostodometry
+4) https://github.com/IntelRealSense/realsense-ros/issues/861
