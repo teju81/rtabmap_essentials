@@ -91,7 +91,10 @@ catkin_make -j4
 - Exit the container and find the name of the container by running ``sudo docker ps -a``.
 - Build the image from the updated container by running ``docker commit <container_name> <image_name>``.
 
+**Step 3:**
 
+Spin a container of the new image by running the command
+``sudo docker run -it --rm --network=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix rtabmap_noetic_source bash``
 
 References:
 1) https://github.com/IntelRealSense/realsense-ros/tree/ros1-legacy
