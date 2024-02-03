@@ -73,6 +73,24 @@ If you want to modify rtabmap or even put in your own code to better understand 
 
 **Step 1:**
 
+- Spin the container from the docker file provided by running ``sudo docker -it blahy blah`` 
+- Run the following commands once inside the container (you need to ensure you are in the /rtabmap/build folder before starting to build it by running the cmake commands).
+
+```
+cd /rtabmap/build
+cmake ..
+make -j6
+make install
+cd ~/catkin_ws
+git clone https://github.com/introlab/rtabmap_ros.git src/rtabmap_ros
+catkin_make -j4
+```
+
+**Step 2:**
+
+- Exit the container and find the name of the container by running ``sudo docker ps -a``.
+- Build the image from the updated container by running ``docker commit <container_name> <image_name>``.
+
 
 
 References:
