@@ -67,6 +67,13 @@ Also, the rtabmap_viz visualizer will show the 3D map getting built against a da
 [ WARN] (2024-01-31 14:57:43.608) OdometryF2M.cpp:562::computeTransform() Registration failed: "Not enough inliers 0/20 (matches=50) between -1 and 626"
 ```
 
+## Building From Source
+
+If you want to modify rtabmap or even put in your own code to better understand the software that was built you will need to build rtabmap from source. Follow the below steps to build rtabmap from source.
+
+**Step 1:**
+
+
 
 References:
 1) https://github.com/IntelRealSense/realsense-ros/tree/ros1-legacy
