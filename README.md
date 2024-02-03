@@ -26,8 +26,8 @@ This repo will document the essentials to run rtabmap with a realsense camera (D
 **Step 4: Launch RTABMAP**
 
 - In another terminal, run the rtabmap docker image ``sudo docker run -it --rm --network=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix introlab3it/rtabmap_ros:noetic-latest bash``
-- Edit the topics on which the data stream and info of the RGBD sensor is published
-  - Run the command ``gedit /opt/ros/noetic/share/rtabmap_ros/launch/rtabmap.launch`` and inspect the file and make sure the topics matches what is given below
+- Inspect the topics on which the data streams and info of the RGBD sensor are published
+  - Run the command ``gedit /opt/ros/noetic/share/rtabmap_ros/launch/rtabmap.launch`` and inspect the file. The topics need to match what is given below
   ```
     <!-- RGB-D related topics -->
   <arg name="rgb_topic"               default="/camera/color/image_raw" />
@@ -35,9 +35,16 @@ This repo will document the essentials to run rtabmap with a realsense camera (D
   <arg name="camera_info_topic"       default="/camera/color/camera_info" />
   <arg name="depth_camera_info_topic" default="$(arg camera_info_topic)" />
   ```
-- Launch RTABMAP by running ``roslaunch rtabmap_ros rtabmap.launch``
+  - Edit the topic names in the launch file (will not work when building from source). A better way to do it would be to pass them on as launch arguments as given below.
+  
+- Launch RTABMAP by running ``roslaunch rtabmap_ros rtabmap.launch rgb_topic:=/camera/color/image_raw depth_topic:=/camera/aligned_depth_to_color/image_raw camera_info_topic:=/camera/color/camera_info``
 
-**Note**
+**Note 1**
+
+- The topic names keep changing as and when newer versions of the real-sense ros node get developed and shipped. You will need to check that the real-sense node publishes data on topics that match what rtabmap subscribes to.
+- Depth maps need to be aligned to the rgb images. Hence, the need for the argument ``align_depth:=true`` when launching the real-sense ros node.
+
+**Note 2**
 
 Hold the camera as still as you can in the air before launching the rtabmap node. Once, launched move the camera around slowly to build the map. Successful map building would show up similar to the below text
 ```
