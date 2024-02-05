@@ -138,5 +138,6 @@ You might want to fork the rtabmap github repo and work off of that repo. Any ch
 References:
 1) https://github.com/IntelRealSense/realsense-ros/tree/ros1-legacy
 2) https://github.com/introlab/rtabmap_ros/tree/master
-3) https://github.com/introlab/rtabmap/wiki/Kinect-mapping#lostodometry
-4) https://github.com/IntelRealSense/realsense-ros/issues/861
+3) https://github.com/IntelRealSense/realsense-ros/issues/861
+4) https://askubuntu.com/questions/520963/how-come-the-locate-command-doesnt-find-obvious-files
+5) https://github.com/introlab/rtabmap/wiki/Kinect-mapping#lostodometry
