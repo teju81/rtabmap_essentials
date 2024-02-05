@@ -82,7 +82,7 @@ If you want to modify rtabmap (or even put in your own code to better understand
 
 - Spin the container from the docker file provided by running ``sudo docker -it blahy blah``
 - Run the following commands in the container.
-- 
+
 ```
 cd /rtabmap/build
 cmake ..
@@ -98,15 +98,21 @@ catkin_make -j4
 - Exit the container and find the name of the container by running ``sudo docker ps -a``.
 - Build the image from the updated container by running ``docker commit <container_name> <image_name>``.
 
+
+Note that putting the set of commands shown in step 1 inside the dockerfile was not working. The docker build seemed to get hung indefinitely when executing the ``cmake ..`` command (processing a particular line item in the CMakelists.txt seemed to be the problem). Hence, the need to run them manually and save the image using docker commit.
+
+
 **Step 3:**
 
-Spin a container of the new image by running the command
-``sudo docker run -it --rm --network=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix rtabmap_noetic_source bash``
+Spin a container of the saved image by running the command
+``sudo docker run -it --rm --network=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix <image_name> bash``
 
-**Step 4:**
+**Step 4 (Optional):**
 
-- Make changes to the rtabmap code. The rtabmap code resides in ``/rtabmap/app`` and ``/rtabmap/corelib`` folders. Let us for example modify the file ``Rtabmap.cpp`` inside the ``/rtabmap/corelib/src`` folder.
-- Then open the file in a text editor by running the command ``gedit /rtabmap/corelib/src/Rtabmap.cpp`` and then make your changes, save and close the text editor.
+Follow this step whenever you modify the rtabmap code.
+
+- The rtabmap code resides in ``/rtabmap/app`` and ``/rtabmap/corelib`` folders. Let us for example modify the file ``Rtabmap.cpp`` inside the ``/rtabmap/corelib/src`` folder.
+- Open the file in a text editor by running the command ``gedit /rtabmap/corelib/src/Rtabmap.cpp`` and then make your changes, save and close the text editor.
 - Build the Rtabmap package by running the following commands (you need to ensure you are in the /rtabmap/build folder before starting to build it by running the cmake commands).
 
 ```
@@ -114,16 +120,13 @@ cd /rtabmap/build
 cmake ..
 make -j6
 make install
-cd ~/catkin_ws
-git clone https://github.com/introlab/rtabmap_ros.git src/rtabmap_ros
-catkin_make -j4
 ```
 
 **Step 5:**
 
 Navigate into the catkin_ws directory and launch the rtabmap_ros node by running the command ``roslaunch rtabmap_ros rtabmap.launch rgb_topic:=/camera/color/image_raw depth_topic:=/camera/aligned_depth_to_color/image_raw camera_info_topic:=/camera/color/camera_info``
 
-Note that the libraries get installed in ``/usr/local/`` folder. I found that the rtabmap github page recommends installing ``ros-ROS_DISTRO-rtabmap*`` as an easy way to resolve dependency issues. However, note that building the 
+Note that the rtabmap libraries get installed in ``/usr/local/`` folder when built from source. The rtabmap github page recommends installing ``ros-ROS_DISTRO-rtabmap*`` as an easy way to resolve dependency issues. However, I found that this resulted in the rtabmap libraries/binaries getting stored in the library folder somewhere inside the ``/opt/ros/noetic/`` folder. When you run the ``catkin_make -j4`` command to build ``rtabmap_ros`` package, catkin was linking against the libraries stored in ``/opt/ros/noetic/``. Hence, avoid the installing ``ros-ROS_DISTRO-rtabmap`` package. In the absence of this package, if you have are using the ``ros-noetic-desktop-full`` package, the only missing package is ``costmap_2d`` which can be resolved by installing the ''ros-ROS_DISTRO-navigation`` package.
 
 
 References:
