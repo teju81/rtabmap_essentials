@@ -141,3 +141,4 @@ References:
 3) https://github.com/IntelRealSense/realsense-ros/issues/861
 4) https://askubuntu.com/questions/520963/how-come-the-locate-command-doesnt-find-obvious-files
 5) https://github.com/introlab/rtabmap/wiki/Kinect-mapping#lostodometry
+6) https://www.theconstructsim.com/ros-5-minutes-001-create-ros-catkin-workspace/
