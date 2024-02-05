@@ -76,13 +76,13 @@ Also, the rtabmap_viz visualizer will show the 3D map getting built against a da
 
 ## Building From Source
 
-If you want to modify rtabmap or even put in your own code to better understand the software that was built you will need to build rtabmap from source. Follow the below steps to build rtabmap from source.
+If you want to modify rtabmap (or even put in your own code to better understand rtabmap) you will need to build rtabmap from source. Follow the below steps to build rtabmap from source.
 
 **Step 1:**
 
-- Spin the container from the docker file provided by running ``sudo docker -it blahy blah`` 
-- Run the following commands once inside the container (you need to ensure you are in the /rtabmap/build folder before starting to build it by running the cmake commands).
-
+- Spin the container from the docker file provided by running ``sudo docker -it blahy blah``
+- Run the following commands in the container.
+- 
 ```
 cd /rtabmap/build
 cmake ..
@@ -105,13 +105,25 @@ Spin a container of the new image by running the command
 
 **Step 4:**
 
-Make changes to the rtabmap code. The rtabmap code resides in ``/rtabmap/app`` and ``/rtabmap/corelib`` folders. Let us for example make a simple change in the filename 
+- Make changes to the rtabmap code. The rtabmap code resides in ``/rtabmap/app`` and ``/rtabmap/corelib`` folders. Let us for example modify the file ``Rtabmap.cpp`` inside the ``/rtabmap/corelib/src`` folder.
+- Then open the file in a text editor by running the command ``gedit /rtabmap/corelib/src/Rtabmap.cpp`` and then make your changes, save and close the text editor.
+- Build the Rtabmap package by running the following commands (you need to ensure you are in the /rtabmap/build folder before starting to build it by running the cmake commands).
 
+```
+cd /rtabmap/build
+cmake ..
+make -j6
+make install
+cd ~/catkin_ws
+git clone https://github.com/introlab/rtabmap_ros.git src/rtabmap_ros
+catkin_make -j4
+```
 
 **Step 5:**
 
 Navigate into the catkin_ws directory and launch the rtabmap_ros node by running the command ``roslaunch rtabmap_ros rtabmap.launch rgb_topic:=/camera/color/image_raw depth_topic:=/camera/aligned_depth_to_color/image_raw camera_info_topic:=/camera/color/camera_info``
 
+Note that the libraries get installed in ``/usr/local/`` folder. I found that the rtabmap github page recommends installing ``ros-ROS_DISTRO-rtabmap*`` as an easy way to resolve dependency issues. However, note that building the 
 
 
 References:
