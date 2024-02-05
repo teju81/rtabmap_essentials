@@ -93,6 +93,8 @@ git clone https://github.com/introlab/rtabmap_ros.git src/rtabmap_ros
 catkin_make -j4
 ```
 
+- Run rtabmap application and check that it is working by launching both the real-sense and rtabmap nodes respectively.
+
 **Step 2:**
 
 - Exit the container and find the name of the container by running ``sudo docker ps -a``.
