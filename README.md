@@ -126,7 +126,13 @@ make install
 
 Navigate into the catkin_ws directory and launch the rtabmap_ros node by running the command ``roslaunch rtabmap_ros rtabmap.launch rgb_topic:=/camera/color/image_raw depth_topic:=/camera/aligned_depth_to_color/image_raw camera_info_topic:=/camera/color/camera_info``
 
-Note that the rtabmap libraries get installed in ``/usr/local/`` folder when built from source. The rtabmap github page recommends installing ``ros-ROS_DISTRO-rtabmap*`` as an easy way to resolve dependency issues. However, I found that this resulted in the rtabmap libraries/binaries getting stored in the library folder somewhere inside the ``/opt/ros/noetic/`` folder. When you run the ``catkin_make -j4`` command to build ``rtabmap_ros`` package, catkin was linking against the libraries stored in ``/opt/ros/noetic/``. Hence, avoid the installing ``ros-ROS_DISTRO-rtabmap`` package. In the absence of this package, if you have are using the ``ros-noetic-desktop-full`` package, the only missing package is ``costmap_2d`` which can be resolved by installing the ''ros-ROS_DISTRO-navigation`` package.
+**Note 1** 
+
+The rtabmap libraries get installed in ``/usr/local/`` folder when built from source. The rtabmap github page recommends installing ``ros-ROS_DISTRO-rtabmap*`` as an easy way to resolve dependency issues. However, I found that this resulted in the rtabmap libraries/binaries getting stored in the library folder somewhere inside the ``/opt/ros/noetic/`` folder. When you run the ``catkin_make -j4`` command to build ``rtabmap_ros`` package, catkin was linking against the libraries stored in ``/opt/ros/noetic/``. Hence, avoid the installing ``ros-ROS_DISTRO-rtabmap`` package. In the absence of this package, if you have are using the ``ros-noetic-desktop-full`` package, the only missing package is ``costmap_2d`` which can be resolved by installing the ''ros-ROS_DISTRO-navigation`` package.
+
+**Note 2**
+
+You might want to fork the rtabmap github repo and work off of that repo. Any changes can be pushed into the repo, and pulled/cloned from inside the containers everytime you want to work with the latest code. This will help avoid saving the docker image from containers again and again.
 
 
 References:
