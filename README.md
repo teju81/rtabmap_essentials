@@ -103,6 +103,17 @@ catkin_make -j4
 Spin a container of the new image by running the command
 ``sudo docker run -it --rm --network=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix rtabmap_noetic_source bash``
 
+**Step 4:**
+
+Make changes to the rtabmap code. The rtabmap code resides in ``/rtabmap/app`` and ``/rtabmap/corelib`` folders. Let us for example make a simple change in the filename 
+
+
+**Step 5:**
+
+Navigate into the catkin_ws directory and launch the rtabmap_ros node by running the command ``roslaunch rtabmap_ros rtabmap.launch rgb_topic:=/camera/color/image_raw depth_topic:=/camera/aligned_depth_to_color/image_raw camera_info_topic:=/camera/color/camera_info``
+
+
+
 References:
 1) https://github.com/IntelRealSense/realsense-ros/tree/ros1-legacy
 2) https://github.com/introlab/rtabmap_ros/tree/master
